@@ -23,7 +23,7 @@ Every significant task requires establishing:
 
 ```bash
 # Add to registry
-amplifier bundle add git+https://github.com/microsoft/amplifier-bundle-sage@main
+amplifier bundle add git+https://github.com/michaeljabbour/amplifier-bundle-sage@main
 
 # Use the bundle
 amplifier bundle use sage

@@ -5,7 +5,7 @@ bundle:
 
 tools:
   - module: tool-sage
-    source: git+https://github.com/microsoft/amplifier-module-tool-sage@main
+    source: git+https://github.com/michaeljabbour/amplifier-module-tool-sage@main
     config:
       default_provider: gemini
       default_model: gemini-3-pro
