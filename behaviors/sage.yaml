@@ -1,0 +1,20 @@
+bundle:
+  name: sage-behavior
+  version: 1.0.0
+  description: Strategic advisor behavior - outcome-focused guidance on architecture, design, and product decisions
+
+tools:
+  - module: tool-sage
+    source: git+https://github.com/microsoft/amplifier-module-tool-sage@main
+    config:
+      default_provider: gemini
+      default_model: gemini-3-pro
+      max_tokens: 4096
+
+agents:
+  include:
+    - sage:sage-consultant
+
+context:
+  include:
+    - sage:context/sage-instructions.md
