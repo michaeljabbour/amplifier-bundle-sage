@@ -1,9 +1,10 @@
 bundle:
   name: sage-behavior
-  version: 1.3.0
-  description: Strategic advisor behavior with decision memory and context continuity
+  version: 1.4.0
+  description: Strategic advisor with decision memory, evaluation, and context continuity
 
 tools:
+  # Core SAGE consultation tool
   - module: tool-sage
     source: git+https://github.com/michaeljabbour/amplifier-module-tool-sage@main
     config:
@@ -11,7 +12,15 @@ tools:
       default_provider: gemini
       default_model: gemini-2.0-flash
       max_tokens: 4096
-      auto_record_decisions: true  # Auto-record consultations to memory
+      auto_record_decisions: true
+
+  # SAGE Evaluation tool (binary + rubric)
+  - module: tool-sage-eval
+    source: git+https://github.com/michaeljabbour/amplifier-module-tool-sage-eval@main
+    config:
+      default_provider: gemini
+      default_model: gemini-2.0-flash
+      default_threshold: 3.0
 
   # Decision memory for persistent decision tracking
   - module: decisionmemory
@@ -37,7 +46,9 @@ hooks:
 
 agents:
   include:
-    - sage:sage-consultant
+    - sage:agents/sage-consultant.md
+    - sage:agents/sage-judge.md
+    - sage:agents/sage-validator.md
 
 context:
   include:
