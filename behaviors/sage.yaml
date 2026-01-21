@@ -36,6 +36,15 @@ tools:
       default_provider: gemini
 
 hooks:
+  # Session activity indicator - spinner, tokens, elapsed time
+  - module: hooks-sessionindicator
+    source: git+https://github.com/michaeljabbour/amplifier-module-hooks-sessionindicator@main
+    config:
+      position: bottom
+      show_tokens: true
+      show_elapsed: true
+      stuck_threshold: 60
+
   # Inject recent decisions into session context
   - module: hooks-decision-context
     source: git+https://github.com/michaeljabbour/amplifier-module-hooks-decision-context@main
