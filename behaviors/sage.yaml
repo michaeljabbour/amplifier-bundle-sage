@@ -3,10 +3,18 @@ bundle:
   version: 1.0.0
   description: Strategic advisor behavior - outcome-focused guidance on architecture, design, and product decisions
 
+providers:
+  - module: provider-gemini
+    source: git+https://github.com/microsoft/amplifier-module-provider-gemini@main
+    name: gemini
+    config:
+      default_model: gemini-2.0-flash
+
 tools:
   - module: tool-sage
     source: git+https://github.com/michaeljabbour/amplifier-module-tool-sage@main
     config:
+      mode: auto
       default_provider: gemini
       default_model: gemini-2.0-flash
       max_tokens: 4096
