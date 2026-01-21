@@ -1,6 +1,6 @@
 bundle:
   name: sage-behavior
-  version: 1.0.0
+  version: 1.1.0
   description: Strategic advisor behavior - outcome-focused guidance on architecture, design, and product decisions
 
 tools:
@@ -11,6 +11,15 @@ tools:
       default_provider: gemini
       default_model: gemini-2.0-flash
       max_tokens: 4096
+
+  # RLM for code-aware consultations (optional - enhances sage when codebase_path provided)
+  - module: tool-rlm
+    source: local
+    path: ~/dev/amplifier-rlm/modules/tool-rlm
+    config:
+      max_recursion_depth: 3
+      max_llm_calls: 50
+      default_provider: gemini
 
 agents:
   include:
