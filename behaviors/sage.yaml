@@ -1,7 +1,7 @@
 bundle:
   name: sage-behavior
-  version: 1.1.0
-  description: Strategic advisor behavior - outcome-focused guidance on architecture, design, and product decisions
+  version: 1.3.0
+  description: Strategic advisor behavior with decision memory and context continuity
 
 tools:
   - module: tool-sage
@@ -11,8 +11,13 @@ tools:
       default_provider: gemini
       default_model: gemini-2.0-flash
       max_tokens: 4096
+      auto_record_decisions: true  # Auto-record consultations to memory
 
-  # RLM for code-aware consultations (optional - enhances sage when codebase_path provided)
+  # Decision memory for persistent decision tracking
+  - module: decisionmemory
+    source: git+https://github.com/michaeljabbour/amplifier-module-decisionmemory@main
+
+  # RLM for code-aware consultations (optional)
   - module: tool-rlm
     source: local
     path: ~/dev/amplifier-rlm/modules/tool-rlm
@@ -20,6 +25,15 @@ tools:
       max_recursion_depth: 3
       max_llm_calls: 50
       default_provider: gemini
+
+hooks:
+  # Inject recent decisions into session context
+  - module: hooks-decision-context
+    source: git+https://github.com/michaeljabbour/amplifier-module-hooks-decision-context@main
+    config:
+      max_decisions: 5
+      status_filter: active
+      priority: 45
 
 agents:
   include:
