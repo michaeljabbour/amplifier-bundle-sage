@@ -1,7 +1,7 @@
 ---
 bundle:
   name: sage
-  version: 2.1.0
+  version: 2.2.0
   description: Strategic advisor for architecture, design, product, and outcome-focused decisions
 
 includes:
@@ -15,9 +15,12 @@ tools:
       default_model: gemini-2.0-flash
       max_tokens: 4096
 
-hooks:
-  - module: hooks-streaming-ui
-    source: git+https://github.com/michaeljabbour/amplifier-module-hooks-streaming-ui@main
+  - module: tool-rlm
+    source: file:///Users/michaeljabbour/dev/amplifier-module-tool-rlm
+    config:
+      max_recursion_depth: 3
+      max_llm_calls: 50
+      default_provider: gemini
 
 agents:
   include:
